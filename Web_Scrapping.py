@@ -24,7 +24,7 @@ def gui_tin_discord(tieu_de, link):
         print(f"❌ Không thể gửi tin nhắn đến Discord: {e}")
 
 # ==========================================
-# 🔎 LOGIC CÀO DỮ LIỆU (CHẠY 1 LẦN RỒI THOÁT)
+# VÒNG LẶP SĂN TIN CHẠY NGẦM LIÊN TỤC
 # ==========================================
 url_scraping = "https://hcm.edu.vn/tin-tuc-su-kien/c/41021"
 headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"}
@@ -35,30 +35,36 @@ if os.path.exists("cac_link_da_xem.txt"):
     with open("cac_link_da_xem.txt", "r", encoding="utf-8") as f:
         cac_link_da_biet = set(f.read().splitlines())
 
-print(f"⏰ [{time.strftime('%H:%M:%S')}] Đang quét trang của Sở...")
-try:
-    response = requests.get(url_scraping, headers=headers, timeout=10)
-    if response.status_code == 200:
-        soup = BeautifulSoup(response.text, "html.parser")
-        articles = soup.find_all("a")
-        
-        for art in articles:
-            title = art.text.strip()
-            link = art.get("href")
-            
-            if title and link:
-                if KEYWORD in title.lower():
-                    if not link.startswith("http"):
-                        link = "https://hcm.edu.vn" + link
-                        
-                    if link not in cac_link_da_biet:
-                        cac_link_da_biet.add(link)
-                        
-                        with open("cac_link_da_xem.txt", "a", encoding="utf-8") as f:
-                            f.write(link + "\n")
-                            
-                        gui_tin_discord(title, link)
-except Exception as e:
-    print(f"❌ Lỗi: {e}")
+print("🚀 Bot Săn Tin Lớp 10 qua Discord đã kích hoạt trên Server!")
+gui_tin_discord("Bot đã kết nối với Server Render thành công và đang chạy ngầm 24/7!", url_scraping)
 
-print("✨ Quét xong! Bot tự đóng để tiết kiệm tài nguyên.")
+while True:
+    print(f"⏰ [{time.strftime('%H:%M:%S')}] Đang quét trang của Sở...")
+    try:
+        response = requests.get(url_scraping, headers=headers, timeout=10)
+        if response.status_code == 200:
+            soup = BeautifulSoup(response.text, "html.parser")
+            articles = soup.find_all("a")
+            
+            for art in articles:
+                title = art.text.strip()
+                link = art.get("href")
+                
+                if title and link:
+                    if KEYWORD in title.lower():
+                        if not link.startswith("http"):
+                            link = "https://hcm.edu.vn" + link
+                            
+                        if link not in cac_link_da_biet:
+                            cac_link_da_biet.add(link)
+                            
+                            with open("cac_link_da_xem.txt", "a", encoding="utf-8") as f:
+                                f.write(link + "\n")
+                                
+                            gui_tin_discord(title, link)
+                            
+    except Exception as e:
+        print(f"❌ Lỗi chu kỳ: {e}")
+        
+    print("💤 Đã kiểm tra xong. Bot đi ngủ 1 tiếng đây...\n")
+    time.sleep(3600)
