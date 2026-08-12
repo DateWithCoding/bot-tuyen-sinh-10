@@ -49,7 +49,11 @@ except Exception as e:
 # ==========================================
 # 🌐 TỰ ĐỘNG XUẤT RA FILE INDEX.HTML ĐỂ LÀM WEBSITE
 # ==========================================
-thoi_gian_cap_nhat = time.strftime('%H:%M:%S - %d/%m/%Y')
+from datetime import datetime, timedelta
+
+# Lấy giờ UTC của server GitHub rồi cộng thêm 7 tiếng để ra giờ Việt Nam
+gio_viet_nam = datetime.utcnow() + timedelta(hours=7)
+thoi_gian_cap_nhat = gio_viet_nam.strftime('%H:%M:%S - %d/%m/%Y')
 
 html_content = f"""<!DOCTYPE html>
 <html lang="vi">
