@@ -24,11 +24,13 @@ def gui_tin_discord(tieu_de, link):
         print(f"❌ Không thể gửi tin nhắn đến Discord: {e}")
 
 # ==========================================
-# VÒNG LẶP SĂN TIN CHẠY NGẦM LIÊN TỤC
+# 🎯 CẤU HÌNH BỘ LỌC TỪ KHÓA
 # ==========================================
 url_scraping = "https://hcm.edu.vn/tin-tuc-su-kien/c/41021"
 headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"}
-KEYWORD = "tuyển sinh 10"
+
+# Danh sách các từ khóa cần lọc (viết thường hết để bot so sánh chính xác)
+DANH_SACH_KEYWORD = ["tuyển sinh 10", "tuyển sinh vào lớp 10", "tuyển sinh vào 10"]
 
 cac_link_da_biet = set()
 if os.path.exists("cac_link_da_xem.txt"):
@@ -38,6 +40,9 @@ if os.path.exists("cac_link_da_xem.txt"):
 print("🚀 Bot Săn Tin Lớp 10 qua Discord đã kích hoạt trên Server!")
 gui_tin_discord("Bot đã kết nối với Server Render thành công và đang chạy ngầm 24/7!", url_scraping)
 
+# ==========================================
+# VÒNG LẶP SĂN TIN CHẠY NGẦM LIÊN TỤC
+# ==========================================
 while True:
     print(f"⏰ [{time.strftime('%H:%M:%S')}] Đang quét trang của Sở...")
     try:
@@ -51,7 +56,10 @@ while True:
                 link = art.get("href")
                 
                 if title and link:
-                    if KEYWORD in title.lower():
+                    # Kiểm tra xem tiêu đề có chứa một trong các từ khóa trong danh sách hay không
+                    co_tin_tuyen_sinh = any(kw in title.lower() for kw in DANH_SACH_KEYWORD)
+                    
+                    if co_tin_tuyen_sinh:
                         if not link.startswith("http"):
                             link = "https://hcm.edu.vn" + link
                             
