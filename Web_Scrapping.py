@@ -2,6 +2,24 @@ import requests
 from bs4 import BeautifulSoup
 import time
 import os
+# === THÊM ĐOẠN NÀY ĐỂ RENDER WEB SERVICE KHÔNG BÁO LỖI ===
+from http.server import BaseHTTPRequestHandler, HTTPServer
+import threading
+
+class SimpleServer(BaseHTTPRequestHandler):
+    def do_GET(self):
+        self.send_response(200)
+        self.send_header("Content-type", "text/html")
+        self.end_headers()
+        self.wfile.write(b"Bot dang chay tot!")
+
+def run_fake_server():
+    server = HTTPServer(('0.0.0.0', int(os.environ.get("PORT", 8080))), SimpleServer)
+    server.serve_forever()
+
+# Chạy server ngầm để qua mặt Render
+threading.Thread(target=run_fake_server, daemon=True).start()
+# ========================================================
 
 # ==========================================
 # 🔑 LINK DISCORD WEBHOOK CỦA BẠN
