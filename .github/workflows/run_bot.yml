@@ -27,7 +27,7 @@ jobs:
           pip install -r requirements.txt
 
       - name: Chạy con bot quét dữ liệu
-        run: python scraper.py      # ⚠️ ĐỔI thành tên file .py của bạn
+        run: python Web_Scrapping.py      # ⚠️ ĐỔI thành tên file .py của bạn
 
       - name: Tự động cập nhật trang web lên GitHub Pages
         run: |
