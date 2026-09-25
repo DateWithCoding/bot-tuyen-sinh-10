@@ -7,7 +7,7 @@
 
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background-color: #f0f2f5; /*Màu xám nhạt*/
+    background: linear-gradient(135deg, #667eea, #764ba2);
     color: #333333;
     line-height: 1.6;
     padding: 20px;
@@ -24,11 +24,10 @@ body {
 }
 
 h1 {
-    font-size: 26px;
-    color: black;    /*Màu đen*/
-    text-align: center;
-    margin-bottom: 15px;
-    text-transform: uppercase;
+    background: liner-gradient(90deg, #ffd700, #ff8c00);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .time {
