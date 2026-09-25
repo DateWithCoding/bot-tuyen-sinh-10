@@ -1,0 +1,73 @@
+/* File: style.css */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: aqua; /*Màu xanh biển nhạt*/
+    color: #333333;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 40px auto; /* Căn giữa trang */
+    background-color: #ffffff;
+    padding: 40px 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    border-top: 5px solid #0056b3; /* Điểm nhấn màu xanh giáo dục */
+}
+
+h1 {
+    font-size: 26px;
+    color: silver;    /*Màu bạc*/
+    text-align: center;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+.time {
+    text-align: center;
+    font-size: 14px;
+    color: gold;    /*Màu vàng kim*/ 
+    background-color: #e9ecef;
+    padding: 6px 15px;
+    border-radius: 20px;
+    margin: 0 auto 30px auto;
+    display: table; /* Căn giữa cho thẻ p */
+}
+
+.tin-tuc {
+    list-style-type: none; /* Bỏ dấu chấm tròn mặc định của thẻ ul */
+    padding: 0;
+}
+
+.no-news {
+    text-align: center;
+    font-size: 16px;
+    color: #155724;
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+    padding: 20px;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+/* Responsive cho màn hình điện thoại */
+@media (max-width: 600px) {
+    .container {
+        margin: 20px auto;
+        padding: 25px 20px;
+    }
+    h1 {
+        font-size: 20px;
+    }
+    .time, .no-news {
+        font-size: 13px;
+    }
+}
