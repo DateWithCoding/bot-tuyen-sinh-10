@@ -7,27 +7,28 @@
 
 body {
     font-family: Arial, Helvetica, sans-serif;
-    /* Sửa lỗi nền bị cắt ngang */
+    /* Nền gradient giữ nguyên */
     background: linear-gradient(135deg, #667eea, #764ba2);
-    background-attachment: fixed; /* Giữ nền cố định khi cuộn */
-    min-height: 100vh; /* Đảm bảo nền phủ kín màn hình */
+    background-attachment: fixed; 
+    min-height: 100vh; 
     color: #333333;
     line-height: 1.6;
     padding: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center; /* Căn giữa card theo chiều dọc */
+    /* ĐÃ XÓA display: flex, justify-content và align-items ở đây */
 }
 
 .container {
     width: 100%;
     max-width: 800px;
+    
+    /* ĐÂY RỒI: margin-top nhỏ (20px) để nó nằm trên cao, auto để căn giữa ngang */
+    margin: 20px auto; 
+    
     background-color: #ffffff;
     padding: 40px 30px;
     border-radius: 12px;
-    /* Bóng đổ sâu hơn, tạo khối nổi bật */
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); 
-    border-top: 5px solid #0056b3; /* Điểm nhấn màu xanh giáo dục */
+    border-top: 5px solid #0056b3; 
 }
 
 h1 {
