@@ -7,38 +7,61 @@
 
 body {
     font-family: Arial, Helvetica, sans-serif;
+    /* Sửa lỗi nền bị cắt ngang */
     background: linear-gradient(135deg, #667eea, #764ba2);
+    background-attachment: fixed; /* Giữ nền cố định khi cuộn */
+    min-height: 100vh; /* Đảm bảo nền phủ kín màn hình */
     color: #333333;
     line-height: 1.6;
     padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Căn giữa card theo chiều dọc */
 }
 
 .container {
+    width: 100%;
     max-width: 800px;
-    margin: 40px auto; /* Căn giữa trang */
     background-color: #ffffff;
     padding: 40px 30px;
     border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    /* Bóng đổ sâu hơn, tạo khối nổi bật */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); 
     border-top: 5px solid #0056b3; /* Điểm nhấn màu xanh giáo dục */
 }
 
 h1 {
-    background: liner-gradient(90deg, #ffd700, #ff8c00);
+    text-align: center;
+    font-size: 26px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    
+    /* Fix lỗi typo "liner" và thêm màu dự phòng */
+    color: #0056b3; /* Fallback nếu trình duyệt không hỗ trợ gradient */
+    background: linear-gradient(90deg, #0056b3, #00a8ff);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    
+    /* Căn giữa icon và chữ nếu có icon */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
 }
 
 .time {
-    text-align: center;
+    /* Đổi từ display: table sang width: fit-content để căn giữa hiện đại hơn */
+    display: block;
+    width: fit-content;
+    margin: 0 auto 30px auto;
+    
     font-size: 14px;
-    color: black;    /*Màu đen*/ 
+    color: #555555;
     background-color: #e9ecef;
     padding: 6px 15px;
     border-radius: 20px;
-    margin: 0 auto 30px auto;
-    display: table; /* Căn giữa cho thẻ p */
 }
 
 .tin-tuc {
@@ -59,13 +82,22 @@ h1 {
 
 /* Responsive cho màn hình điện thoại */
 @media (max-width: 600px) {
+    body {
+        padding: 10px; /* Giảm padding ngoài cho đỡ chật */
+        align-items: flex-start; /* Trên mobile không cần căn giữa dọc */
+    }
+    
     .container {
         margin: 20px auto;
         padding: 25px 20px;
     }
+    
     h1 {
-        font-size: 20px;
+        font-size: 18px;
+        flex-direction: column; /* Icon và chữ xếp dọc trên mobile */
+        gap: 5px;
     }
+    
     .time, .no-news {
         font-size: 13px;
     }
